@@ -1,0 +1,25 @@
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                logging: true
+                driver:   pdo_pgsql
+                host:     "%env(resolve:POSTGRES_HOST)%"
+                port:     "%env(resolve:POSTGRES_PORT)%"
+                dbname:   "%env(resolve:POSTGRES_DB)%"
+                user:     "%env(resolve:POSTGRES_USER)%"
+                password: "%env(resolve:POSTGRES_PASSWORD)%"
+                charset:  UTF8
+    orm:
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
